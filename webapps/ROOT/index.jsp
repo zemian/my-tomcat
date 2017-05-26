@@ -1,8 +1,9 @@
-<html><body>
-<a href="public/logout.jsp">Logout</a>
-<pre>
 <%
-out.println("HELLO!");
+String message = "Hello " + request.getUserPrincipal().getName();
+request.setAttribute("message", message);
 %>
-</pre>
-</body></html>
+
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<tags:layout>
+<pre>${message}</pre>
+</tags:layout>
