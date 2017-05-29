@@ -10,8 +10,8 @@ $CATALINA_HOME/bin/catalina.sh run
 ----
 
 NOTES:
-* You normally want to install original Tomcat package into $HOME/apps/apache-tomcat (or link it) and
-  no need to modify this districution package.
+
+* You normally want to install original Tomcat package into $HOME/apps/apache-tomcat (or link it) and no need to modify this districution package.
 * To create new instance of Tocmat with your own configuration, it's recommend you create new base instance.  
 * The minimal structure you need in a base instance are `conf` and `temp` folders.
 * The minimal configuration files you need in `conf` folder are `web.xml` and `server.xml` with the following:
