@@ -8,3 +8,8 @@ many of the Tomcat features.
 See docs folder for more developer notes
 
 See http://tomcat.apache.org/tomcat-8.5-doc/
+
+= Branches
+
+* `master` - Container authorization setup with users from postgres DB.
+* `auth-xml-users` - Container authorization setup with users from a xml file.
