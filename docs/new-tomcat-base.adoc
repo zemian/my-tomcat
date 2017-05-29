@@ -1,0 +1,29 @@
+= How to create a new tomcat base instance
+
+----
+mkdir my-tomcat
+cd my-tomcat
+cp -r $CATALINA_HOME/conf .
+mkdir temp
+export CATALINA_BASE=`pwd`
+$CATALINA_HOME/bin/catalina.sh run
+----
+
+NOTES:
+- You normally want to install original Tomcat package into $HOME/apps/apache-tomcat (or link it) and
+  no need to modify this districution package.
+- To create new instance of Tocmat with your own configuration, it's recommend you create new base instance.  
+- The minimal structure you need in a base instance are `conf` and `temp` folders.
+- The minimal configuration files you need in `conf` folder are `web.xml` and `server.xml` with the following:
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<Server port="8005" shutdown="SHUTDOWN">  
+  <Service name="Catalina">
+    <Connector port="8080" protocol="HTTP/1.1" />
+    <Engine name="Catalina" defaultHost="localhost">		
+      <Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">
+      </Host>
+    </Engine>
+  </Service>
+</Server>
+----
