@@ -1,6 +1,7 @@
 = auth-postgres setup
 
 Step1 : Create DB tables and a test user
+----
 create table users (
   user_name         varchar(15) not null primary key,
   user_pass         varchar(15) not null
@@ -14,6 +15,7 @@ create table user_roles (
 
 insert into users values('test', 'test123');
 insert into user_roles values('test', 'test-role');
+----
 
 Step2: Add GlobalNamingResources for DB pool
 ----
