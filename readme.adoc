@@ -1,40 +1,10 @@
-= auth-postgres setup
+= my-tomcat
 
-Step1 : Create DB tables and a test user
-----
-create table users (
-  user_name         varchar(15) not null primary key,
-  user_pass         varchar(15) not null
-);
+A simple tomcat base instance project to explore its configuration features
 
-create table user_roles (
-  user_name         varchar(15) not null,
-  role_name         varchar(15) not null,
-  primary key (user_name, role_name)
-);
+The `webapps/ROOT` contains a very simple Web application that can explore 
+many of the Tomcat features.
 
-insert into users values('test', 'test123');
-insert into user_roles values('test', 'test-role');
-----
+See docs folder for more developer notes
 
-Step2: Add GlobalNamingResources for DB pool
-----
-	<Resource name="jdbc/test"
-            auth="Container"
-            type="javax.sql.DataSource"
-            username="test"
-            password=""
-            driverClassName="org.postgresql.Driver"
-            url="jdbc:postgresql://localhost:5432/test"
-            maxTotal="8"
-            maxIdle="4"/>
-----
-
-
-Step2: Add JDBCRealm in server.xml
-----
-<Realm className="org.apache.catalina.realm.DataSourceRealm"
-   dataSourceName="jdbc/test"
-   userTable="users" userNameCol="user_name" userCredCol="user_pass"
-   userRoleTable="user_roles" roleNameCol="role_name"/>
-----
+See http://tomcat.apache.org/tomcat-8.5-doc/

@@ -1,0 +1,40 @@
+= auth-postgres setup
+
+Step1 : Create DB tables and a test user
+----
+create table users (
+  user_name         varchar(15) not null primary key,
+  user_pass         varchar(15) not null
+);
+
+create table user_roles (
+  user_name         varchar(15) not null,
+  role_name         varchar(15) not null,
+  primary key (user_name, role_name)
+);
+
+insert into users values('test', 'test123');
+insert into user_roles values('test', 'test-role');
+----
+
+Step2: Add GlobalNamingResources for DB pool
+----
+	<Resource name="jdbc/test"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="test"
+            password=""
+            driverClassName="org.postgresql.Driver"
+            url="jdbc:postgresql://localhost:5432/test"
+            maxTotal="8"
+            maxIdle="4"/>
+----
+
+
+Step2: Add JDBCRealm in server.xml
+----
+<Realm className="org.apache.catalina.realm.DataSourceRealm"
+   dataSourceName="jdbc/test"
+   userTable="users" userNameCol="user_name" userCredCol="user_pass"
+   userRoleTable="user_roles" roleNameCol="role_name"/>
+----
